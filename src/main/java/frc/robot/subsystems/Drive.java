@@ -8,18 +8,22 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.PneumaticsConstants;
 
 public class Drive extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  CANSparkMax leftLead = new CANSparkMax(0, MotorType.kBrushless);
-  CANSparkMax leftFollow = new CANSparkMax(0, MotorType.kBrushless);
-  CANSparkMax rightLead = new CANSparkMax(0, MotorType.kBrushless);
-  CANSparkMax rightFollow = new CANSparkMax(0, MotorType.kBrushless);
+  CANSparkMax leftLead = new CANSparkMax(DriveConstants.LEFTLEAD, MotorType.kBrushless);
+  CANSparkMax leftFollow = new CANSparkMax(DriveConstants.LEFTFOLLOW, MotorType.kBrushless);
+  CANSparkMax rightLead = new CANSparkMax(DriveConstants.RIGHTLEAD, MotorType.kBrushless);
+  CANSparkMax rightFollow = new CANSparkMax(DriveConstants.RIGHTFOLLOW, MotorType.kBrushless);
   DifferentialDrive diffDrive = new DifferentialDrive(leftLead, rightLead);
+  //DoubleSolenoid gearShift = new DoubleSolenoid(0, null, PneumaticsConstants.HIGHRATIO, PneumaticsConstants.LOWRATIO);
   public Drive() {
     leftFollow.follow(leftLead);
     rightFollow.follow(rightLead);
@@ -27,9 +31,13 @@ public class Drive extends SubsystemBase {
   }
   public void configure(){
     leftLead.setIdleMode(IdleMode.kBrake);
-    leftFollow.setIdleMode(IdleMode.kBrake);
+    //leftFollow.setIdleMode(IdleMode.kBrake);
     rightLead.setIdleMode(IdleMode.kBrake);
-    rightFollow.setIdleMode(IdleMode.kBrake);
+    //rightFollow.setIdleMode(IdleMode.kBrake);
+
+    rightLead.setInverted(true);
+    leftLead.setInverted(true);
+
 
     leftLead.setSmartCurrentLimit(60);
     leftFollow.setSmartCurrentLimit(60);
@@ -44,6 +52,14 @@ public class Drive extends SubsystemBase {
   public void arcadeDrive(double speed, double rotation){
     diffDrive.arcadeDrive(speed, rotation);
   }
+
+  // public void shiftGear(){
+  //   if(gearShift.get() == Value.kForward){
+  //     gearShift.set(Value.kReverse);
+  //   }else{
+  //     gearShift.set(Value.kForward);
+  //   }
+  // }
 
   /**
    * Example command factory method.

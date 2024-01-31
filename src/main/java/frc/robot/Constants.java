@@ -16,4 +16,17 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
+  public static class DriveConstants{
+    public static int LEFTLEAD = 1;
+    public static int LEFTFOLLOW = 2;
+    
+    public static int RIGHTLEAD = 4;
+    public static int RIGHTFOLLOW = 3;
+    
+  }
+  public static class PneumaticsConstants{
+    public static int PCM = 0;
+    public static int LOWRATIO = 0;
+    public static int HIGHRATIO = 0;
+  }
 }

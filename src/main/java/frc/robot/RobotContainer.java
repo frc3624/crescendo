@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveTrain;
 import frc.robot.subsystems.Drive;
@@ -19,11 +20,14 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
+  private final CommandXboxController xbox = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  //private final Compressor compressor = new Compressor(PneumaticsConstants.PCM, PneumaticsModuleType.REVPH);
   //Subsystems
   private final Drive drive = new Drive();
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
+ 
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
