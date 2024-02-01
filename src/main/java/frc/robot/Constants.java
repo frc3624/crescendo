@@ -25,8 +25,8 @@ public final class Constants {
     
   }
   public static class PneumaticsConstants{
-    public static int PCM = 0;
-    public static int LOWRATIO = 0;
-    public static int HIGHRATIO = 0;
+    public static int PCM = 20;
+    public static int LEFTGEAR = 14;
+    public static int RIGHTGEAR = 15;
   }
 }

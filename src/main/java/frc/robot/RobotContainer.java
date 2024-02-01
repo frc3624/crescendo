@@ -8,7 +8,10 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveTrain;
+import frc.robot.commands.ShiftGear;
 import frc.robot.subsystems.Drive;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -21,18 +24,19 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class RobotContainer {
   private final CommandXboxController xbox = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  //private final Compressor compressor = new Compressor(PneumaticsConstants.PCM, PneumaticsModuleType.REVPH);
+  private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
   //Subsystems
   private final Drive drive = new Drive();
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
- 
+  private final ShiftGear shiftGear = new ShiftGear(drive);
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+    compressor.enableDigital();
     drive.setDefaultCommand(driveTrain);
     configureBindings();
   }
@@ -47,6 +51,7 @@ public class RobotContainer {
    * joysticks}.
    */
   private void configureBindings() {
+    xbox.a().whileTrue(shiftGear);
   }
 
   /**
