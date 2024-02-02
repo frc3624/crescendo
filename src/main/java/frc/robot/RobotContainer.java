@@ -9,7 +9,9 @@ import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.DriveTrain;
 import frc.robot.commands.ShiftGear;
+import frc.robot.commands.Toggle;
 import frc.robot.subsystems.Drive;
+import frc.robot.subsystems.Piston;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -27,10 +29,12 @@ public class RobotContainer {
   private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
   //Subsystems
   private final Drive drive = new Drive();
+  private final Piston piston = new Piston();
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
   private final ShiftGear shiftGear = new ShiftGear(drive);
+  private final Toggle toggle = new Toggle(piston);
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -52,6 +56,7 @@ public class RobotContainer {
    */
   private void configureBindings() {
     xbox.a().whileTrue(shiftGear);
+    xbox.b().whileTrue(toggle);
   }
 
   /**
