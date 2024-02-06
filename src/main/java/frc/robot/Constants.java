@@ -22,11 +22,17 @@ public final class Constants {
     
     public static int RIGHTLEAD = 4;
     public static int RIGHTFOLLOW = 3;
+
+    public static int BELT = 0;
+    public static int LIMIT = 0;
+
+    public static int RIGHTINTAKE = 0;
+    public static int LEFTINTAKE = 0;
     
   }
   public static class PneumaticsConstants{
     public static int PCM = 20;
-    public static int LEFTGEAR = 14;
-    public static int RIGHTGEAR = 15;
+    public static int GEARSHIFT = 8;
+    public static int CLIMB = 1;
   }
 }

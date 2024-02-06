@@ -7,11 +7,15 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.Climbing;
+import frc.robot.commands.Conveying;
 import frc.robot.commands.DriveTrain;
+import frc.robot.commands.Intaking;
 import frc.robot.commands.ShiftGear;
-import frc.robot.commands.Toggle;
 import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Piston;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Climb;
+import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,12 +33,18 @@ public class RobotContainer {
   private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
   //Subsystems
   private final Drive drive = new Drive();
-  private final Piston piston = new Piston();
+  private final Climb climb = new Climb();
+  private final Intake intake = new Intake();
+  private final Conveyor conveyor= new Conveyor();
+
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
   private final ShiftGear shiftGear = new ShiftGear(drive);
-  private final Toggle toggle = new Toggle(piston);
+  private final Climbing climbing = new Climbing(climb);
+  private final Intaking intaking = new Intaking(intake);
+  private final Conveying conveying = new Conveying(conveyor);
+
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -45,18 +55,11 @@ public class RobotContainer {
     configureBindings();
   }
 
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
   private void configureBindings() {
     xbox.a().whileTrue(shiftGear);
-    xbox.b().whileTrue(toggle);
+    xbox.b().whileTrue(climbing);
+    xbox.x().toggleOnTrue(intaking);
+    xbox.y().toggleOnTrue(conveying);
   }
 
   /**

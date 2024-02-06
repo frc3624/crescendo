@@ -8,16 +8,17 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.PneumaticsConstants;
 
-public class Piston extends SubsystemBase {
+public class Climb extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final Solenoid piston = new Solenoid(PneumaticsModuleType.REVPH, 15);
-  public Piston() {
-    piston.set(false);
+  private final Solenoid climbSolenoid = new Solenoid(PneumaticsModuleType.REVPH, PneumaticsConstants.CLIMB);
+  public Climb() {
+    climbSolenoid.set(false);
   }
 
   public void toggle(){
-    piston.set(!piston.get());
+    climbSolenoid.set(!climbSolenoid.get());
   }
 
   @Override

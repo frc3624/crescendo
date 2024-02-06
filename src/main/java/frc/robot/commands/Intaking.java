@@ -5,34 +5,29 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.Piston;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
-public class Toggle extends Command {
+public class Intaking extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Piston piston;
+  private final Intake intake;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public Toggle(Piston piston) {
-    this.piston = piston;
+  public Intaking(Intake intake) {
+   this.intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(piston);
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    piston.toggle();
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    intake.set(.3);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
