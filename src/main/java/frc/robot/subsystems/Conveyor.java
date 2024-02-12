@@ -4,14 +4,12 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkBase;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-import edu.wpi.first.hal.CANAPITypes.CANDeviceType;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj2.command.Command;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
@@ -23,7 +21,8 @@ public class Conveyor extends SubsystemBase {
   }
   public void configure(){
     beltMotor.setIdleMode(IdleMode.kBrake);
-    beltMotor.setSmartCurrentLimit(60);
+    beltMotor.setSmartCurrentLimit(80);
+    beltMotor.setInverted(true);
     beltMotor.burnFlash();
   }
   public void set(double speed){

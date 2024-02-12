@@ -4,11 +4,28 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.DriveConstants;
 
 public class Shoot extends SubsystemBase {
   /** Creates a new Shoot. */
-  public Shoot() {}
+  private final TalonFX leftShoot = new TalonFX(DriveConstants.LEFTSHOOT);
+  private final TalonFX rightShoot = new TalonFX(DriveConstants.RIGHTSHOOT);
+  public Shoot() {
+    configure();
+  }
+  public void configure(){
+    leftShoot.setNeutralMode(NeutralModeValue.Brake);
+    rightShoot.setNeutralMode(NeutralModeValue.Brake);
+  }
+
+  public void set(double speed){
+    leftShoot.set(speed);
+    rightShoot.set(speed);
+  }
 
   @Override
   public void periodic() {

@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DriveConstants;
-import frc.robot.Constants.PneumaticsConstants;
+
+import frc.robot.Constants.*;
 
 public class Drive extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
@@ -32,14 +32,8 @@ public class Drive extends SubsystemBase {
   }
   public void configure(){
     leftLead.setIdleMode(IdleMode.kBrake);
-    //leftFollow.setIdleMode(IdleMode.kBrake);
     rightLead.setIdleMode(IdleMode.kBrake);
-    //rightFollow.setIdleMode(IdleMode.kBrake);
-   
-    //IF ANYONE DIES OR ALMOST DIES DISABLE THIS
-    //diffDrive.setSafetyEnabled(false);
-    
-    
+      
     rightLead.setInverted(true);
 
     gearShift.set(false);

@@ -5,22 +5,21 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.Constants.PneumaticsConstants;
-import frc.robot.commands.Autos;
 import frc.robot.commands.Climbing;
 import frc.robot.commands.Conveying;
 import frc.robot.commands.DriveTrain;
 import frc.robot.commands.Intaking;
 import frc.robot.commands.ShiftGear;
+import frc.robot.commands.Shooting;
 import frc.robot.subsystems.Drive;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Shoot;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -36,6 +35,7 @@ public class RobotContainer {
   private final Climb climb = new Climb();
   private final Intake intake = new Intake();
   private final Conveyor conveyor= new Conveyor();
+  private final Shoot shoot = new Shoot();
 
 
   //Commands
@@ -44,7 +44,7 @@ public class RobotContainer {
   private final Climbing climbing = new Climbing(climb);
   private final Intaking intaking = new Intaking(intake);
   private final Conveying conveying = new Conveying(conveyor);
-
+  private final Shooting shooting = new Shooting(shoot);
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -60,7 +60,11 @@ public class RobotContainer {
     xbox.b().whileTrue(climbing);
     xbox.x().toggleOnTrue(intaking);
     xbox.y().toggleOnTrue(conveying);
+    xbox.rightBumper().toggleOnTrue(shooting); 
   }
+
+  
+
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

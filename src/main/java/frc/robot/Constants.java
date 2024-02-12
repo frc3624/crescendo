@@ -23,11 +23,15 @@ public final class Constants {
     public static int RIGHTLEAD = 4;
     public static int RIGHTFOLLOW = 3;
 
-    public static int BELT = 0;
-    public static int LIMIT = 0;
+    public static int BELT = 5;
+    public static int TOPLIMIT = 0;
+    public static int BOTTOMLIMIT = 0;
 
     public static int RIGHTINTAKE = 0;
-    public static int LEFTINTAKE = 0;
+    public static int LEFTINTAKE = 42;
+
+    public static int RIGHTSHOOT = 12;
+    public static int LEFTSHOOT = 11;
     
   }
   public static class PneumaticsConstants{
