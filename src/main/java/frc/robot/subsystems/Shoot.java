@@ -18,6 +18,7 @@ public class Shoot extends SubsystemBase {
     configure();
   }
   public void configure(){
+    rightShoot.setInverted(true);
     leftShoot.setNeutralMode(NeutralModeValue.Brake);
     rightShoot.setNeutralMode(NeutralModeValue.Brake);
   }
