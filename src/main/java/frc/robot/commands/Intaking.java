@@ -32,7 +32,6 @@ public class Intaking extends Command {
     if(conveyor.isLimit()){
       intake.set(0);
       conveyor.set(0);
-      end(true);
     }else{
        intake.set(.3);
        conveyor.set(.3);
@@ -49,6 +48,6 @@ public class Intaking extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return conveyor.isLimit();
   }
 }
