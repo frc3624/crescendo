@@ -5,17 +5,19 @@
 package frc.robot.subsystems;
 
 
+import static frc.robot.Constants.DriveConstants.*;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
-
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DriveConstants;
 
 public class Conveyor extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final CANSparkMax beltMotor = new CANSparkMax(DriveConstants.BELT, MotorType.kBrushless);
+  private final CANSparkMax beltMotor = new CANSparkMax(BELT, MotorType.kBrushless);
+  private final DigitalInput limit = new DigitalInput(LIMIT);
   public Conveyor() {
     configure();
   }
@@ -27,6 +29,9 @@ public class Conveyor extends SubsystemBase {
   }
   public void set(double speed){
     beltMotor.set(speed);
+  }
+  public boolean isLimit(){
+    return limit.get();
   }
 
   @Override

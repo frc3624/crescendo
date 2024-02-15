@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -11,10 +12,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 public class Intaking extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake intake;
+  private final Conveyor conveyor;
 
-  public Intaking(Intake intake) {
+  public Intaking(Intake intake, Conveyor conveyor) {
    this.intake = intake;
+   this.conveyor = conveyor;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(conveyor);
     addRequirements(intake);
   }
 
@@ -25,7 +29,15 @@ public class Intaking extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intake.set(.3);
+    if(conveyor.isLimit()){
+      intake.set(0);
+      conveyor.set(0);
+      end(true);
+    }else{
+       intake.set(.3);
+       conveyor.set(.3);
+       
+    }
   }
 
   // Called once the command ends or is interrupted.

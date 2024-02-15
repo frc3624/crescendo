@@ -5,8 +5,7 @@
 package frc.robot.commands;
 
 
-import static frc.robot.Constants.DriveConstants.TOPLIMIT;
-import static frc.robot.Constants.DriveConstants.BOTTOMLIMIT;
+import static frc.robot.Constants.DriveConstants.*;
 import frc.robot.subsystems.Conveyor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -31,6 +30,10 @@ public class Conveying extends Command {
   @Override
   public void execute() {
     conveyor.set(.2);
+    if(conveyor.isLimit()){
+      conveyor.set(0);
+    }
+    System.out.println(conveyor.isLimit());
   }
 
   // Called once the command ends or is interrupted.

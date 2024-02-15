@@ -42,9 +42,9 @@ public class RobotContainer {
   private final DriveTrain driveTrain = new DriveTrain(drive);
   private final ShiftGear shiftGear = new ShiftGear(drive);
   private final Climbing climbing = new Climbing(climb);
-  private final Intaking intaking = new Intaking(intake);
+  private final Intaking intaking = new Intaking(intake,conveyor);
   private final Conveying conveying = new Conveying(conveyor);
-  private final Shooting shooting = new Shooting(shoot);
+  private final Shooting shooting = new Shooting(shoot, conveyor);
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int kDriverControllerPort = 1;
   }
   public static class DriveConstants{
     public static int LEFTLEAD = 1;
@@ -24,8 +24,7 @@ public final class Constants {
     public static int RIGHTFOLLOW = 3;
 
     public static int BELT = 5;
-    public static int TOPLIMIT = 0;
-    public static int BOTTOMLIMIT = 0;
+    public static int LIMIT = 0;
 
     public static int RIGHTINTAKE = 0;
     public static int LEFTINTAKE = 42;

@@ -51,7 +51,7 @@ public class Drive extends SubsystemBase {
   public void arcadeDrive(double speed, double rotation){
     diffDrive.arcadeDrive(speed, rotation);
     if(gearShift.get() == false)
-			diffDrive.arcadeDrive(.5 * speed, .5 * rotation);
+			diffDrive.arcadeDrive(speed,rotation);
 		else
 			diffDrive.arcadeDrive(speed, rotation);
   }
