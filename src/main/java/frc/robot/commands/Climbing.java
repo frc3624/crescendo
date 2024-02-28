@@ -5,15 +5,18 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.Climb;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
 public class Climbing extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climb climb;
+  private final Timer timer = new Timer();
   public Climbing(Climb climb) {
     this.climb = climb;
-    // Use addRequirements() here to declare subsystem dependencies.
+    timer.start();
+    // Use addRequirements) here to declare subsystem dependencies.
     addRequirements(climb);
   }
 
@@ -21,6 +24,7 @@ public class Climbing extends Command {
   @Override
   public void initialize() {
     climb.toggle();
+   // climb.playMusic();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -29,7 +33,9 @@ public class Climbing extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+   // climb.stopMusic();
+  }
 
   // Returns true when the command should end.
   @Override

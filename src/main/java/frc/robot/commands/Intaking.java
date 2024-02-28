@@ -6,6 +6,10 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.LED;
+
+import static frc.robot.Constants.DriveConstants.*;
+
 import edu.wpi.first.wpilibj2.command.Command;
 
 /** An example command that uses an example subsystem. */
@@ -13,11 +17,14 @@ public class Intaking extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Intake intake;
   private final Conveyor conveyor;
+  private final LED led;
 
-  public Intaking(Intake intake, Conveyor conveyor) {
+  public Intaking(Intake intake, Conveyor conveyor, LED led) {
    this.intake = intake;
    this.conveyor = conveyor;
+   this.led = led;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(led);
     addRequirements(conveyor);
     addRequirements(intake);
   }
@@ -29,13 +36,16 @@ public class Intaking extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(conveyor.isLimit()){
-      intake.set(0);
-      conveyor.set(0);
-    }else{
-       intake.set(.3);
-       conveyor.set(.3);
-       
+    if(!SHOT){
+      if(conveyor.isLimit()){
+        intake.set(0);
+        conveyor.set(0);
+        led.confetti();
+      }else{
+        intake.set(.3);
+        conveyor.set(.3);
+        led.blueLightChase();
+      }
     }
   }
 
@@ -43,6 +53,12 @@ public class Intaking extends Command {
   @Override
   public void end(boolean interrupted) {
     intake.set(0);
+    conveyor.set(0);
+    led.confetti();
+    if(conveyor.isLimit()){
+      SHOT = true;
+    }
+      
   }
 
   // Returns true when the command should end.

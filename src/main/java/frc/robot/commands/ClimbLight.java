@@ -3,39 +3,33 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-
+import static frc.robot.Constants.LEDContstants.*;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.Shoot;
+import frc.robot.subsystems.LED;
 
-public class Shooting extends Command {
-  /** Creates a new Shooting. */
-  private Shoot shoot;
-  private Conveyor conveyor;
-  public Shooting(Shoot shoot, Conveyor conveyor) {
-    this.shoot = shoot;
-    this.conveyor = conveyor;
+public class ClimbLight extends Command {
+  /** Creates a new ClimbLight. */
+  private final LED led;
+  public ClimbLight(LED led) {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shoot);
-    addRequirements(conveyor);
+    this.led = led;
+    addRequirements(led);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
   public void execute() {
-    shoot.set(.3);
-    conveyor.set(.3);
+    if(CLIMBLIGHT){
+      led.confetti();
+    } else{
+      led.lightGreen();
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    shoot.set(0);
-    conveyor.set(0);
+    CLIMBLIGHT = !CLIMBLIGHT;
   }
 
   // Returns true when the command should end.

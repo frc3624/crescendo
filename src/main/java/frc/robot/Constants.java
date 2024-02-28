@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 1;
+    public static final int kDriverControllerPort = 0;
   }
   public static class DriveConstants{
     public static int LEFTLEAD = 1;
@@ -23,7 +23,8 @@ public final class Constants {
     public static int RIGHTLEAD = 4;
     public static int RIGHTFOLLOW = 3;
 
-    public static int BELT = 5;
+    public static int RIGHTBELT = 5;
+    public static int LEFTBELT = 6;
     public static int LIMIT = 0;
 
     public static int RIGHTINTAKE = 0;
@@ -32,10 +33,19 @@ public final class Constants {
     public static int RIGHTSHOOT = 12;
     public static int LEFTSHOOT = 11;
     
+    public static boolean SHOT = false;
   }
   public static class PneumaticsConstants{
     public static int PCM = 20;
     public static int GEARSHIFT = 8;
     public static int CLIMB = 1;
+    public static int PAN = 15;
+  }
+  public static class LEDContstants{
+    public static boolean CLIMBLIGHT = false;
+    public static boolean SHIFTLIGHT = false;
+    public static boolean SHOOTLIGHT = false;
+    public static boolean INTAKELIGHT = false;
+
   }
 }

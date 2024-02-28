@@ -5,17 +5,8 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Climbing;
-import frc.robot.commands.Conveying;
-import frc.robot.commands.DriveTrain;
-import frc.robot.commands.Intaking;
-import frc.robot.commands.ShiftGear;
-import frc.robot.commands.Shooting;
-import frc.robot.subsystems.Drive;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shoot;
-import frc.robot.subsystems.Climb;
-import frc.robot.subsystems.Conveyor;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -36,15 +27,22 @@ public class RobotContainer {
   private final Intake intake = new Intake();
   private final Conveyor conveyor= new Conveyor();
   private final Shoot shoot = new Shoot();
+  private final Pan pan = new Pan();
+  private final LED led = new LED();
 
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
   private final ShiftGear shiftGear = new ShiftGear(drive);
   private final Climbing climbing = new Climbing(climb);
-  private final Intaking intaking = new Intaking(intake,conveyor);
+  private final Intaking intaking = new Intaking(intake,conveyor,led);
   private final Conveying conveying = new Conveying(conveyor);
-  private final Shooting shooting = new Shooting(shoot, conveyor);
+  private final HighShooting highShooting = new HighShooting(shoot, conveyor,led);
+  private final LowShooting lowShooting = new LowShooting(shoot,conveyor,pan,led);
+ 
+  private final ShiftLight shiftLight = new ShiftLight(led);
+  private final ClimbLight climbLight = new ClimbLight(led);
+
  
  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -56,11 +54,15 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    xbox.a().whileTrue(shiftGear);
-    xbox.b().whileTrue(climbing);
-    xbox.x().toggleOnTrue(intaking);
-    xbox.y().toggleOnTrue(conveying);
-    xbox.rightBumper().toggleOnTrue(shooting); 
+    xbox.b().whileTrue(shiftGear);
+    xbox.b().whileTrue(shiftLight);
+    xbox.y().whileTrue(climbing);
+    xbox.y().whileTrue(climbLight);
+    xbox.a().toggleOnTrue(intaking);
+    xbox.povRight().toggleOnTrue(conveying);
+    xbox.x().toggleOnTrue(highShooting); 
+    xbox.leftTrigger().toggleOnTrue(lowShooting);
+    
   }
 
   
@@ -73,6 +75,8 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return null;
+   return new Auto(drive, intake, conveyor, shoot);
+   
+  // return null;
   }
 }

@@ -4,36 +4,54 @@
 
 package frc.robot.commands;
 
-
-import frc.robot.subsystems.Conveyor;
-
+import static frc.robot.Constants.DriveConstants.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.subsystems.Conveyor;
+import frc.robot.subsystems.LED;
+import frc.robot.subsystems.Pan;
+import frc.robot.subsystems.Shoot;
 
-/** An example command that uses an example subsystem. */
-public class Conveying extends Command {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+public class LowShooting extends Command {
+  /** Creates a new LowShooting. */
+  private final Shoot shoot;
   private final Conveyor conveyor;
-  public Conveying(Conveyor conveyor) {;
+  private final LED led;
+  private final Pan pan;
+  public LowShooting(Shoot shoot, Conveyor conveyor, Pan pan,LED led) {
+    this.shoot = shoot;
     this.conveyor = conveyor;
+    this.led = led;
+    this.pan = pan;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(shoot);
+    addRequirements(pan); 
+    addRequirements(led);
     addRequirements(conveyor);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    pan.set(true);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    conveyor.set(.2);
+    led.yellow();
+    shoot.set(.1);
+    conveyor.set(.1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    shoot.set(0);
     conveyor.set(0);
+    pan.set(false);
+    SHOT = false;
+    led.confetti();
   }
 
   // Returns true when the command should end.

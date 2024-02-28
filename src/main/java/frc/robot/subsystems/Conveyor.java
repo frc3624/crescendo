@@ -16,19 +16,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Conveyor extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final CANSparkMax beltMotor = new CANSparkMax(BELT, MotorType.kBrushless);
+  private final CANSparkMax rightBelt = new CANSparkMax(RIGHTBELT, MotorType.kBrushless);
+  private final CANSparkMax leftBelt = new CANSparkMax(LEFTBELT, MotorType.kBrushless);
+
   private final DigitalInput limit = new DigitalInput(LIMIT);
   public Conveyor() {
     configure();
   }
   public void configure(){
-    beltMotor.setIdleMode(IdleMode.kBrake);
-    beltMotor.setSmartCurrentLimit(80);
-    beltMotor.setInverted(true);
-    beltMotor.burnFlash();
+    rightBelt.setIdleMode(IdleMode.kBrake);
+    rightBelt.setSmartCurrentLimit(80);
+    rightBelt.setInverted(true);
+    rightBelt.burnFlash();
+
+    leftBelt.setIdleMode(IdleMode.kBrake);
+    leftBelt.setSmartCurrentLimit(80);
+    leftBelt.setInverted(true);
+    leftBelt.burnFlash();
   }
   public void set(double speed){
-    beltMotor.set(speed);
+    leftBelt.set(speed);
+    rightBelt.set(speed);
   }
   public boolean isLimit(){
     return limit.get();
