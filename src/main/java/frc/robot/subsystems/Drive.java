@@ -4,26 +4,45 @@
 
 package frc.robot.subsystems;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.*;
+import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.PneumaticsConstants.*;
+import static frc.robot.Constants.AutoConstants.*;
+
+
 
 public class Drive extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  private final CANSparkMax leftLead = new CANSparkMax(DriveConstants.LEFTLEAD, MotorType.kBrushless);
-  private final CANSparkMax leftFollow = new CANSparkMax(DriveConstants.LEFTFOLLOW, MotorType.kBrushless);
-  private final CANSparkMax rightLead = new CANSparkMax(DriveConstants.RIGHTLEAD, MotorType.kBrushless);
-  private final CANSparkMax rightFollow = new CANSparkMax(DriveConstants.RIGHTFOLLOW, MotorType.kBrushless);
+  private final CANSparkMax leftLead = new CANSparkMax(LEFTLEAD, MotorType.kBrushless);
+  private final CANSparkMax leftFollow = new CANSparkMax(LEFTFOLLOW, MotorType.kBrushless);
+  private final CANSparkMax rightLead = new CANSparkMax(RIGHTLEAD, MotorType.kBrushless);
+  private final CANSparkMax rightFollow = new CANSparkMax(RIGHTFOLLOW, MotorType.kBrushless);
   private final DifferentialDrive diffDrive = new DifferentialDrive(leftLead, rightLead);
-  private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.REVPH, PneumaticsConstants.GEARSHIFT);
+  private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.REVPH, GEARSHIFT);
+  
+  // private final DifferentialDriveKinematics diffDriveKin = new DifferentialDriveKinematics(Units.inchesToMeters(TRACKWIDTH));
+
+  // private final ChassisSpeeds chassisSpeeds = new ChassisSpeeds(VX, VY, ANGSPEED);
+
+  // private final DifferentialDriveWheelSpeeds wheelSpeeds = diffDriveKin.toWheelSpeeds(chassisSpeeds);
+
+  // private final double leftVelocity = wheelSpeeds.leftMetersPerSecond;
+
+  // private final double rightVelocity = wheelSpeeds.rightMetersPerSecond;
   public Drive() {
     leftFollow.follow(leftLead);
     rightFollow.follow(rightLead);

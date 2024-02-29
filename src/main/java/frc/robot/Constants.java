@@ -46,6 +46,13 @@ public final class Constants {
     public static boolean SHIFTLIGHT = false;
     public static boolean SHOOTLIGHT = false;
     public static boolean INTAKELIGHT = false;
+  }
+  public static class AutoConstants{
+    //inner distance is 25, outer is 27.5, wheel diameter is 1 in
+    public static double TRACKWIDTH = 25;
+    public static double VX = 2;
+    public static double VY = 3;
+    public static double ANGSPEED = Math.PI;
 
   }
 }

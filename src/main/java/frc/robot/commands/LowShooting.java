@@ -39,9 +39,9 @@ public class LowShooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    led.yellow();
-    shoot.set(.1);
-    conveyor.set(.1);
+    led.decideColor();
+    shoot.set(.11);
+    conveyor.set(.09);
   }
 
   // Called once the command ends or is interrupted.
@@ -51,7 +51,7 @@ public class LowShooting extends Command {
     conveyor.set(0);
     pan.set(false);
     SHOT = false;
-    led.confetti();
+    led.decideColor();
   }
 
   // Returns true when the command should end.

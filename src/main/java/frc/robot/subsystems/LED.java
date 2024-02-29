@@ -20,11 +20,11 @@ public class LED extends SubsystemBase {
     if(SHIFTLIGHT){
       white();
     } else if(CLIMBLIGHT){
-
+      lightGreen();
     } else if(INTAKELIGHT){
-
+      blueLightChase();
     } else if(SHOOTLIGHT){
-
+      darkGreen();
     } else{
       confetti();
     }

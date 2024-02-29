@@ -19,11 +19,7 @@ public class ClimbLight extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void execute() {
-    if(CLIMBLIGHT){
-      led.confetti();
-    } else{
-      led.lightGreen();
-    }
+    led.decideColor();
   }
 
   // Called once the command ends or is interrupted.

@@ -7,7 +7,7 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 
-public class Auto extends Command {
+public class AutoJank extends Command {
   /** Creates a new Auto. */
   private final Shoot shoot;
   private final Drive drive;
@@ -15,7 +15,7 @@ public class Auto extends Command {
   private final Conveyor conveyor;
   private final Timer timer = new Timer();
 
-  public Auto(Drive drive, Intake intake, Conveyor conveyor, Shoot shoot) {
+  public AutoJank(Drive drive, Intake intake, Conveyor conveyor, Shoot shoot) {
     this.conveyor = conveyor;
     this.drive = drive;
     this.shoot = shoot;

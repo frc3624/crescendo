@@ -75,7 +75,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-   return new Auto(drive, intake, conveyor, shoot);
+   return new AutoJank(drive, intake, conveyor, shoot);
    
   // return null;
   }

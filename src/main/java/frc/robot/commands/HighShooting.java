@@ -34,7 +34,7 @@ public class HighShooting extends Command {
   public void execute() {
     shoot.set(.7);
     conveyor.set(.2);
-    led.darkGreen();
+    led.decideColor();
   }
 
   // Called once the command ends or is interrupted.
@@ -43,7 +43,7 @@ public class HighShooting extends Command {
     shoot.set(0);
     conveyor.set(0);
     SHOT = false;
-    led.confetti();
+    led.decideColor();
   }
 
   // Returns true when the command should end.
