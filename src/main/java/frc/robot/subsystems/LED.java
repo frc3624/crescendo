@@ -17,17 +17,20 @@ public class LED extends SubsystemBase {
   }
 
   public void decideColor(){
-    if(SHIFTLIGHT){
-      white();
-    } else if(CLIMBLIGHT){
-      lightGreen();
-    } else if(INTAKELIGHT){
-      blueLightChase();
-    } else if(SHOOTLIGHT){
+    if(SHOOTLIGHT){
       darkGreen();
+    }
+    else if(INTAKELIGHT){
+      blueLightChase();
+    }
+    else if(CLIMBLIGHT){
+      lightGreen();
+    }else if(SHIFTLIGHT){
+      white();
     } else{
       confetti();
     }
+
   }
   //
   public void set(double speed){

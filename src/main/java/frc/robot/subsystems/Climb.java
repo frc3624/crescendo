@@ -4,12 +4,9 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix6.Orchestra;
-import com.ctre.phoenix6.hardware.TalonFX;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.DriveConstants;
 import static frc.robot.Constants.PneumaticsConstants.*;
 
 public class Climb extends SubsystemBase {

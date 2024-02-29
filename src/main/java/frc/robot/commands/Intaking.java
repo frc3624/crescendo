@@ -9,6 +9,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.LED;
 
 import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.LEDContstants.INTAKELIGHT;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -31,7 +32,10 @@ public class Intaking extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    INTAKELIGHT = true;
+    led.decideColor();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -40,25 +44,24 @@ public class Intaking extends Command {
       if(conveyor.isLimit()){
         intake.set(0);
         conveyor.set(0);
-        led.confetti();
       }else{
         intake.set(.3);
         conveyor.set(.3);
-        led.blueLightChase();
       }
     }
   }
+
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     intake.set(0);
     conveyor.set(0);
-    led.confetti();
     if(conveyor.isLimit()){
       SHOT = true;
     }
-      
+    INTAKELIGHT = false;
+    led.decideColor();
   }
 
   // Returns true when the command should end.

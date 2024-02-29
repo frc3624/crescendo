@@ -15,6 +15,10 @@ public class ClimbLight extends Command {
     this.led = led;
     addRequirements(led);
   }
+  @Override
+  public void initialize() {
+    CLIMBLIGHT = !CLIMBLIGHT;
+  }
 
   // Called when the command is initially scheduled.
   @Override
@@ -25,7 +29,6 @@ public class ClimbLight extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    CLIMBLIGHT = !CLIMBLIGHT;
   }
 
   // Returns true when the command should end.

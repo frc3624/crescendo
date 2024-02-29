@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.LEDContstants.SHOOTLIGHT;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Conveyor;
@@ -33,6 +34,7 @@ public class LowShooting extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    SHOOTLIGHT = true;  
     pan.set(true);
   }
 

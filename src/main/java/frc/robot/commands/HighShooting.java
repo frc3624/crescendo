@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import static frc.robot.Constants.DriveConstants.*;
+import static frc.robot.Constants.LEDContstants.SHOOTLIGHT;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Conveyor;
@@ -27,7 +28,9 @@ public class HighShooting extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    SHOOTLIGHT = true;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -43,6 +46,7 @@ public class HighShooting extends Command {
     shoot.set(0);
     conveyor.set(0);
     SHOT = false;
+    SHOOTLIGHT = false;
     led.decideColor();
   }
 

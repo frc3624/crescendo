@@ -6,10 +6,7 @@ package frc.robot.commands;
 
 import static frc.robot.Constants.LEDContstants.*;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.LED;
 
 public class ShiftLight extends Command {
@@ -24,7 +21,9 @@ public class ShiftLight extends Command {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    SHIFTLIGHT = !SHIFTLIGHT;
+  }
 
   // Called $every time the scheduler runs while the command is scheduled.
   @Override
@@ -34,9 +33,7 @@ public class ShiftLight extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    SHIFTLIGHT = !SHIFTLIGHT;
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override

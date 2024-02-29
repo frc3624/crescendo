@@ -39,7 +39,7 @@ public class DriveTrain extends Command {
   @Override
   public void execute() {
     int mult = SHOT ? -1 : 1;
-    drive.arcadeDrive(mult * xbox.getLeftY(), xbox.getRightX());
+    drive.arcadeDrive(mult * -xbox.getLeftY(), xbox.getRightX());
   }
 
   // Called once the command ends or is interrupted.
