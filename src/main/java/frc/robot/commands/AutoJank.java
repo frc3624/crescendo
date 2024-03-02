@@ -37,39 +37,66 @@ public class AutoJank extends Command {
     timedStraightHighShoot();
   }
   public void timedStraightHighShoot(){
+    //first shot
     if(time() < 3){
       highShoot();
       drive.arcadeDrive(0, 0);
-    } else if(time() < 7){
+    }
+    //backwards 
+    else if(time() < 7){
       shoot.set(0);
-      drive.arcadeDrive(-.4, 0);
+      drive.arcadeDrive(-.6, 0);
       intake();
-    } else if(time() < 11){
+    }
+    //forwards 
+    else if(time() < 11){
       intake();
-      drive.arcadeDrive(.4,0);
-    } else if(time() < 13){
+      drive.arcadeDrive(.6,0);
+    } 
+    //second shot
+    else if(time() < 13){
       drive.arcadeDrive(0, 0);
       highShoot();
     }
   }
-
+  //DONT TRY THIS UNLESS WE HAVE FINALIZED IT AN THE OTHER ONE
   public void timedLeftSideHighShoot(){
-    if(time() < 3){
+    //first shot
+    if(time() < 2){
       highShoot();
       drive.arcadeDrive(0, 0);
     }
-    else if(time() < 6){
-      drive.arcadeDrive(0, -.8);
-    } else if(time() < 7){
+    //goes backward (the first backward is about half the second one)
+    else if(time() < 3){
       shoot.set(0);
-      drive.arcadeDrive(-.4, 0);  
+      drive.arcadeDrive(-.8, 0);
+    } 
+    //turn
+    else if(time() < 4){
+      shoot.set(0);
+      drive.arcadeDrive(0, -.6);  
+    } 
+    //second backward
+    else if(time() < 8){
       intake();
-    } else if(time() < 11){
+      drive.arcadeDrive(-.4,0);
+    } 
+    //forward
+    else if(time() < 12){
       intake();
       drive.arcadeDrive(.4,0);
-    } else if(time() < 13){
-      drive.arcadeDrive(0, 0);
+    } //turn back
+    else if(time() < 13){
+      drive.arcadeDrive(0, .6);
+    } 
+    // second forward
+    else if(time() < 14){
+      drive.arcadeDrive(.8, 0);
+    } 
+    //second shot
+    else{
       highShoot();
+      drive.arcadeDrive(0, 0);
     }
   }
 
@@ -102,6 +129,6 @@ public class AutoJank extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return time() > 13;
+    return time() > 15;
   }
 }
