@@ -38,8 +38,8 @@ public class DriveTrain extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    int mult = SHOT ? -1 : 1;
-    drive.arcadeDrive(mult * -xbox.getLeftY(), xbox.getRightX());
+    //int mult = SHOT ? -1 : 1;mult *
+    drive.arcadeDrive( xbox.getLeftY(), xbox.getRightX());
   }
 
   // Called once the command ends or is interrupted.

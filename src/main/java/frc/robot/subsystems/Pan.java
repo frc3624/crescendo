@@ -19,6 +19,9 @@ public class Pan extends SubsystemBase {
   public void set(boolean setting){
     panSolenoid.set(setting);
   }
+  public boolean get(){
+    return panSolenoid.get();
+  }
 
   @Override
   public void periodic() {

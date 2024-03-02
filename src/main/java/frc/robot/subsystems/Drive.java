@@ -52,10 +52,10 @@ public class Drive extends SubsystemBase {
 
     gearShift.set(false);
 
-    leftLead.setSmartCurrentLimit(60);
-    leftFollow.setSmartCurrentLimit(60);
-    rightFollow.setSmartCurrentLimit(60);
-    rightLead.setSmartCurrentLimit(60);
+    leftLead.setSmartCurrentLimit(50);
+    leftFollow.setSmartCurrentLimit(50);
+    rightFollow.setSmartCurrentLimit(50);
+    rightLead.setSmartCurrentLimit(50);
 
     leftLead.burnFlash();
     leftFollow.burnFlash();

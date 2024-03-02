@@ -39,6 +39,7 @@ public class RobotContainer {
   private final Conveying conveying = new Conveying(conveyor);
   private final HighShooting highShooting = new HighShooting(shoot, conveyor,led);
   private final LowShooting lowShooting = new LowShooting(shoot,conveyor,pan,led);
+  private final Pop pop = new Pop(pan);
  
   private final ShiftLight shiftLight = new ShiftLight(led);
   private final ClimbLight climbLight = new ClimbLight(led);
@@ -62,6 +63,7 @@ public class RobotContainer {
     xbox.povRight().toggleOnTrue(conveying);
     xbox.x().toggleOnTrue(highShooting); 
     xbox.leftTrigger().toggleOnTrue(lowShooting);
+    xbox.rightTrigger().whileTrue(pop);
     
   }
 

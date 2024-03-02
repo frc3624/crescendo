@@ -7,6 +7,9 @@ package frc.robot.commands;
 import static frc.robot.Constants.DriveConstants.*;
 import static frc.robot.Constants.LEDContstants.SHOOTLIGHT;
 
+import org.ejml.ops.ConvertMatrixData;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Conveyor;
 import frc.robot.subsystems.LED;
@@ -19,6 +22,8 @@ public class LowShooting extends Command {
   private final Conveyor conveyor;
   private final LED led;
   private final Pan pan;
+  private final Timer timer = new Timer();
+  private int count = 0;
   public LowShooting(Shoot shoot, Conveyor conveyor, Pan pan,LED led) {
     this.shoot = shoot;
     this.conveyor = conveyor;
@@ -29,21 +34,28 @@ public class LowShooting extends Command {
     addRequirements(pan); 
     addRequirements(led);
     addRequirements(conveyor);
+  
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     SHOOTLIGHT = true;  
-    pan.set(true);
+    timer.start();
+   // pan.set(true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     led.decideColor();
-    shoot.set(.11);
+    // shoot.set(.08);
+    // conveyor.set(.09);
+    // pan.set(true);
+    System.out.println(timer.get());
+    pan.set(true);
     conveyor.set(.09);
+    shoot.set(.12);
   }
 
   // Called once the command ends or is interrupted.
@@ -54,6 +66,8 @@ public class LowShooting extends Command {
     pan.set(false);
     SHOT = false;
     led.decideColor();
+    timer.reset();
+    timer.stop();
   }
 
   // Returns true when the command should end.

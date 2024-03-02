@@ -34,9 +34,9 @@ public class AutoJank extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    timedHighShoot();
+    timedStraightHighShoot();
   }
-  public void timedHighShoot(){
+  public void timedStraightHighShoot(){
     if(time() < 3){
       highShoot();
       drive.arcadeDrive(0, 0);
@@ -53,6 +53,25 @@ public class AutoJank extends Command {
     }
   }
 
+  public void timedLeftSideHighShoot(){
+    if(time() < 3){
+      highShoot();
+      drive.arcadeDrive(0, 0);
+    }
+    else if(time() < 6){
+      drive.arcadeDrive(0, -.8);
+    } else if(time() < 7){
+      shoot.set(0);
+      drive.arcadeDrive(-.4, 0);  
+      intake();
+    } else if(time() < 11){
+      intake();
+      drive.arcadeDrive(.4,0);
+    } else if(time() < 13){
+      drive.arcadeDrive(0, 0);
+      highShoot();
+    }
+  }
 
   //Helper Methods (I don't feel like remembering the speeds for everything)
   public double time(){
