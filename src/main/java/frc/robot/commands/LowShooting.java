@@ -23,7 +23,6 @@ public class LowShooting extends Command {
   private final LED led;
   private final Pan pan;
   private final Timer timer = new Timer();
-  private int count = 0;
   public LowShooting(Shoot shoot, Conveyor conveyor, Pan pan,LED led) {
     this.shoot = shoot;
     this.conveyor = conveyor;
@@ -55,7 +54,7 @@ public class LowShooting extends Command {
     System.out.println(timer.get());
     pan.set(true);
     conveyor.set(.09);
-    shoot.set(.12);
+    shoot.set(.13);
   }
 
   // Called once the command ends or is interrupted.

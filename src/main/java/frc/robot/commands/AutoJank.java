@@ -24,17 +24,19 @@ public class AutoJank extends Command {
     addRequirements(shoot);
     addRequirements(conveyor);
     addRequirements(intake);
-    timer.start();
+   
     // Use addRequirements() here to declare subsystem dependencies.
   }
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+     timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    timedStraightHighShoot();
+    timedLeftSideHighShoot();
   }
   public void timedStraightHighShoot(){
     //first shot
@@ -45,20 +47,24 @@ public class AutoJank extends Command {
     //backwards 
     else if(time() < 7){
       shoot.set(0);
-      drive.arcadeDrive(-.6, 0);
+      drive.arcadeDrive(-.7, 0);
       intake();
     }
     //forwards 
     else if(time() < 11){
       intake();
-      drive.arcadeDrive(.6,0);
+      drive.arcadeDrive(.7,0);
     } 
     //second shot
-    else if(time() < 13){
+    else if(time() < 15){
       drive.arcadeDrive(0, 0);
       highShoot();
     }
   }
+
+
+
+
   //DONT TRY THIS UNLESS WE HAVE FINALIZED IT AN THE OTHER ONE
   public void timedLeftSideHighShoot(){
     //first shot
@@ -66,33 +72,32 @@ public class AutoJank extends Command {
       highShoot();
       drive.arcadeDrive(0, 0);
     }
-    //goes backward (the first backward is about half the second one)
-    else if(time() < 3){
+    //first back .5
+    else if(time() <2.5){
       shoot.set(0);
-      drive.arcadeDrive(-.8, 0);
-    } 
+      drive.arcadeDrive(-.7, 0);
+    }
     //turn
-    else if(time() < 4){
+    else if(time() < 2.9){
       shoot.set(0);
-      drive.arcadeDrive(0, -.6);  
+      drive.arcadeDrive(0, -.75);  
     } 
     //second backward
-    else if(time() < 8){
+    else if(time() < 5.8){
       intake();
-      drive.arcadeDrive(-.4,0);
+      drive.arcadeDrive(-.7,0);
     } 
     //forward
-    else if(time() < 12){
+    else if(time() < 8.7){
       intake();
-      drive.arcadeDrive(.4,0);
+      drive.arcadeDrive(.7,0);
     } //turn back
-    else if(time() < 13){
-      drive.arcadeDrive(0, .6);
+    else if(time() < 9.1){
+      drive.arcadeDrive(0, .75);
     } 
-    // second forward
-    else if(time() < 14){
-      drive.arcadeDrive(.8, 0);
-    } 
+    else if(time() < 9.6){
+      drive.arcadeDrive(.7, 0);
+    }
     //second shot
     else{
       highShoot();
@@ -105,8 +110,8 @@ public class AutoJank extends Command {
     return timer.get();
   }
   public void highShoot(){
-    shoot.set(.7);
-    conveyor.set(.2);
+    shoot.set(.45);
+    conveyor.set(.3);
   }
   public void intake(){
     if(conveyor.isLimit()){
@@ -124,6 +129,8 @@ public class AutoJank extends Command {
     shoot.set(0);
     drive.arcadeDrive(0, 0);
     intake.set(0);
+    timer.stop();
+    timer.reset();
   }
 
   // Returns true when the command should end.
