@@ -7,6 +7,10 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.CvSink;
+import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -21,6 +25,14 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 public class RobotContainer {
   private final CommandXboxController xbox = new CommandXboxController(OperatorConstants.kDriverControllerPort);
   private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
+  
+  //Camera
+ UsbCamera rearCam = CameraServer.startAutomaticCapture();
+	UsbCamera frontCam = CameraServer.startAutomaticCapture();
+ CvSink cvSink = CameraServer.getVideo();
+	CvSource outputStream = CameraServer.putVideo("Rear Cam", 680, 480);
+  CvSource output2 = CameraServer.putVideo("Front Cam", 680, 480);
+
   //Subsystems
   private final Drive drive = new Drive();
   private final Climb climb = new Climb();
@@ -53,6 +65,7 @@ public class RobotContainer {
     compressor.enableDigital();
     drive.setDefaultCommand(driveTrain);
     configureBindings();
+    //System.out.println(drive.getAngle());
   }
 
   private void configureBindings() {
@@ -64,6 +77,7 @@ public class RobotContainer {
     xbox.povRight().toggleOnTrue(conveying);
     xbox.x().toggleOnTrue(highShooting); 
     xbox.leftTrigger().toggleOnTrue(lowShooting);
+    xbox.leftBumper().toggleOnTrue(pop);
     xbox.rightTrigger().whileTrue(highShooting);
     xbox.povDown().toggleOnTrue(reverse);
   }

@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+//import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
@@ -28,7 +29,9 @@ public class Drive extends SubsystemBase {
   private final CANSparkMax rightFollow = new CANSparkMax(RIGHTFOLLOW, MotorType.kBrushless);
   private final DifferentialDrive diffDrive = new DifferentialDrive(leftLead, rightLead);
   private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.REVPH, GEARSHIFT);
-  
+ // private final AHRS gyro = new AHRS();
+  private double initialAng;
+  private double maxAng = 0;
   // private final DifferentialDriveKinematics diffDriveKin = new DifferentialDriveKinematics(Units.inchesToMeters(TRACKWIDTH));
 
   // private final ChassisSpeeds chassisSpeeds = new ChassisSpeeds(VX, VY, ANGSPEED);
@@ -61,6 +64,9 @@ public class Drive extends SubsystemBase {
     leftFollow.burnFlash();
     rightLead.burnFlash();
     rightFollow.burnFlash();
+
+    // initialAng = gyro.getQuaternionZ();
+    
   }
   public void arcadeDrive(double speed, double rotation){
     diffDrive.arcadeDrive(speed, rotation);
@@ -73,6 +79,9 @@ public class Drive extends SubsystemBase {
   public void shiftGear(){
     gearShift.set(!gearShift.get());
   }
+  // public double getAngle(){
+  //   return gyro.getQuaternionZ();
+  // }
 
   /**
    * Example command factory method.

@@ -18,10 +18,10 @@ public class LED extends SubsystemBase {
 
   public void decideColor(){
     if(SHOOTLIGHT){
-      darkGreen();
+      red();
     }
     else if(INTAKELIGHT){
-      blueLightChase();
+      green2();
     }
     else if(CLIMBLIGHT){
       lightGreen();
@@ -30,9 +30,11 @@ public class LED extends SubsystemBase {
     } else{
       confetti();
     }
-
   }
   //
+  public void red(){
+    set(.59);
+  }
   public void set(double speed){
     led.set(speed);
   }
@@ -63,7 +65,7 @@ public class LED extends SubsystemBase {
   public void redLarsonScanner(){
     set(-.35);
   }
-  public void blueLightChase(){
+  public void green2(){
     set(-.29);
   }
   public void whiteHeartBeat(){

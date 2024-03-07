@@ -22,7 +22,6 @@ public class LowShooting extends Command {
   private final Conveyor conveyor;
   private final LED led;
   private final Pan pan;
-  private final Timer timer = new Timer();
   public LowShooting(Shoot shoot, Conveyor conveyor, Pan pan,LED led) {
     this.shoot = shoot;
     this.conveyor = conveyor;
@@ -40,7 +39,6 @@ public class LowShooting extends Command {
   @Override
   public void initialize() {
     SHOOTLIGHT = true;  
-    timer.start();
    // pan.set(true);
   }
 
@@ -51,7 +49,6 @@ public class LowShooting extends Command {
     // shoot.set(.08);
     // conveyor.set(.09);
     // pan.set(true);
-    System.out.println(timer.get());
     pan.set(true);
     conveyor.set(.09);
     shoot.set(.13);
@@ -64,9 +61,8 @@ public class LowShooting extends Command {
     conveyor.set(0);
     pan.set(false);
     SHOT = false;
+    SHOOTLIGHT = false;
     led.decideColor();
-    timer.reset();
-    timer.stop();
   }
 
   // Returns true when the command should end.

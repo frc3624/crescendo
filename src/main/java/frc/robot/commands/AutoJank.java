@@ -36,29 +36,49 @@ public class AutoJank extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    timedLeftSideHighShoot();
+    timedStraightHighShoot();
   }
+
+
+  public void straightTest(){
+    if(time() < 5){
+      drive.arcadeDrive(0, -.5);
+    } else{
+      drive.arcadeDrive(0,0);
+    }
+  }
+    // if(time() < 5.2){
+    //   drive.arcadeDrive(0,-.5);
+    // } else{
+    //   drive.arcadeDrive(0,0);
+    // }
+    //69.23 degrees/sec at .5 speed
+    //138.46
+
+
   public void timedStraightHighShoot(){
     //first shot
-    if(time() < 3){
+    if(time() < 2){
       highShoot();
       drive.arcadeDrive(0, 0);
     }
     //backwards 
-    else if(time() < 7){
+    else if(time() < 4.5){
       shoot.set(0);
       drive.arcadeDrive(-.7, 0);
       intake();
     }
     //forwards 
-    else if(time() < 11){
+    else if(time() < 7){
       intake();
       drive.arcadeDrive(.7,0);
     } 
     //second shot
-    else if(time() < 15){
+    else if(time() < 9){
       drive.arcadeDrive(0, 0);
       highShoot();
+    } else{
+      drive.arcadeDrive(0, 0);
     }
   }
 
@@ -81,6 +101,7 @@ public class AutoJank extends Command {
     else if(time() < 2.9){
       shoot.set(0);
       drive.arcadeDrive(0, -.75);  
+      //gyroDrive(75);
     } 
     //second backward
     else if(time() < 5.8){
@@ -94,6 +115,7 @@ public class AutoJank extends Command {
     } //turn back
     else if(time() < 9.1){
       drive.arcadeDrive(0, .75);
+      //gyroDrive(-75);
     } 
     else if(time() < 9.6){
       drive.arcadeDrive(.7, 0);
@@ -109,6 +131,19 @@ public class AutoJank extends Command {
   public double time(){
     return timer.get();
   }
+
+  // public void gyroDrive(double angle){
+  //   if(angle > 0 && drive.getAngle() < angle){
+  //     //left side
+  //     drive.arcadeDrive(0,-.75);
+  //   } else if(angle < 0 && drive.getAngle() > angle) {
+  //     //right side
+  //     drive.arcadeDrive(0, .75);
+  //   } else{
+  //     drive.arcadeDrive(0, 0);
+  //   }
+  // }
+
   public void highShoot(){
     shoot.set(.45);
     conveyor.set(.3);
