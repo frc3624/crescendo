@@ -4,12 +4,17 @@
 
 package frc.robot.commands;
 
+import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.*;
 
 import static frc.robot.Constants.DriveConstants.*;
 import static frc.robot.Constants.LEDContstants.*;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 
 /** An example command that uses an example subsystem. */
 public class Intaking extends Command {
@@ -18,6 +23,8 @@ public class Intaking extends Command {
   private final Conveyor conveyor;
   private final LED led;
   private final Limit limit;
+  private final XboxController xbox = new XboxController(OperatorConstants.kDriverControllerPort);
+
 
   public Intaking(Intake intake, Conveyor conveyor, Limit limit, LED led) {
    this.intake = intake;
@@ -59,11 +66,14 @@ public class Intaking extends Command {
   public void end(boolean interrupted) {
     intake.set(0);
     conveyor.set(0);
-    if(limit.isLimit()){
-      SHOT = true;
-    }
     INTAKELIGHT = false;
     led.decideColor();
+    if(limit.isLimit()){
+      SHOT = true;
+      xbox.setRumble(RumbleType.kBothRumble, .5);
+      Timer.delay(1);
+      xbox.setRumble(RumbleType.kBothRumble,0);
+    }
   }
 
   // Returns true when the command should end.
