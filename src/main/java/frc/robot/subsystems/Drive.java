@@ -55,10 +55,10 @@ public class Drive extends SubsystemBase {
 
     gearShift.set(false);
 
-    leftLead.setSmartCurrentLimit(50);
-    leftFollow.setSmartCurrentLimit(50);
-    rightFollow.setSmartCurrentLimit(50);
-    rightLead.setSmartCurrentLimit(50);
+    leftLead.setSmartCurrentLimit(40);
+    leftFollow.setSmartCurrentLimit(40);
+    rightFollow.setSmartCurrentLimit(40);
+    rightLead.setSmartCurrentLimit(40);
 
     leftLead.burnFlash();
     leftFollow.burnFlash();
@@ -72,9 +72,12 @@ public class Drive extends SubsystemBase {
     diffDrive.arcadeDrive(speed, rotation);
     if(gearShift.get() == false)
 			diffDrive.arcadeDrive(speed,rotation);
-		else
-			diffDrive.arcadeDrive(.75* speed,.75* rotation);
+		else  
+			diffDrive.arcadeDrive(.85* speed,.4* rotation);
   }
+    // public void drive(double speed){
+    //   rightLead.set(speed);
+    // }
 
   public void shiftGear(){
     gearShift.set(!gearShift.get());

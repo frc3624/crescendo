@@ -35,8 +35,8 @@ public class HighShooting extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    shoot.set(.45);
-    conveyor.set(.3);
+    shoot.set(.55);
+    conveyor.set(.25);
     led.decideColor();
   }
 

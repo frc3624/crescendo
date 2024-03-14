@@ -7,6 +7,9 @@ package frc.robot;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+
+import static frc.robot.Constants.DriveConstants.SHOT;
+
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -27,11 +30,11 @@ public class RobotContainer {
   private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
   
   //Camera
- UsbCamera rearCam = CameraServer.startAutomaticCapture();
+//  UsbCamera rearCam = CameraServer.startAutomaticCapture();
 	UsbCamera frontCam = CameraServer.startAutomaticCapture();
  CvSink cvSink = CameraServer.getVideo();
 	CvSource outputStream = CameraServer.putVideo("Rear Cam", 680, 480);
-  CvSource output2 = CameraServer.putVideo("Front Cam", 680, 480);
+  // CvSource output2 = CameraServer.putVideo("Front Cam", 680, 480);
 
   //Subsystems
   private final Drive drive = new Drive();
@@ -62,6 +65,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+    System.out.println(SHOT);
     compressor.enableDigital();
     drive.setDefaultCommand(driveTrain);
     configureBindings();

@@ -11,7 +11,6 @@ import static frc.robot.Constants.DriveConstants.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.Constants.OperatorConstants;
-
 /** An example command that uses an example subsystem. */
 public class DriveTrain extends Command {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
@@ -27,8 +26,10 @@ public class DriveTrain extends Command {
    */
   public DriveTrain(Drive drive) {
     this.drive = drive;
+ 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drive);
+
   }
 
   // Called when the command is initially scheduled.
@@ -40,6 +41,7 @@ public class DriveTrain extends Command {
   public void execute() {
     //int mult = SHOT ? -1 : 1;mult *
     drive.arcadeDrive( xbox.getLeftY(), xbox.getRightX());
+    System.out.println(SHOT ? "Note" : "No Note");
   }
 
   // Called once the command ends or is interrupted.
