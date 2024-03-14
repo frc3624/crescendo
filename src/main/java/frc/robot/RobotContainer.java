@@ -43,14 +43,14 @@ public class RobotContainer {
   private final Conveyor conveyor= new Conveyor();
   private final Shoot shoot = new Shoot();
   private final Pan pan = new Pan();
+  private final Limit limit = new Limit();
   private final LED led = new LED();
-
 
   //Commands
   private final DriveTrain driveTrain = new DriveTrain(drive);
   private final ShiftGear shiftGear = new ShiftGear(drive);
   private final Climbing climbing = new Climbing(climb);
-  private final Intaking intaking = new Intaking(intake,conveyor,led);
+  private final Intaking intaking = new Intaking(intake,conveyor,limit,led);
   private final Conveying conveying = new Conveying(conveyor);
   private final HighShooting highShooting = new HighShooting(shoot, conveyor,led);
   private final LowShooting lowShooting = new LowShooting(shoot,conveyor,pan,led);
@@ -96,7 +96,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-   return new AutoJank(drive, intake, conveyor, shoot);
+   return new AutoJank(drive, intake, conveyor, shoot, limit);
    
   // return null;
   }

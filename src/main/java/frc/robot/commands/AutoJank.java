@@ -16,14 +16,17 @@ public class AutoJank extends Command {
   private final Drive drive;
   private final Intake intake;
   private final Conveyor conveyor;
+  private final Limit limit;
   private final Timer timer = new Timer();
   private boolean NOTE = false;
 
-  public AutoJank(Drive drive, Intake intake, Conveyor conveyor, Shoot shoot) {
+  public AutoJank(Drive drive, Intake intake, Conveyor conveyor, Shoot shoot, Limit limit) {
     this.conveyor = conveyor;
     this.drive = drive;
     this.shoot = shoot;
     this.intake = intake;
+    this.limit = limit;
+    addRequirements(limit);
     addRequirements(drive);
     addRequirements(shoot);
     addRequirements(conveyor);
@@ -166,7 +169,7 @@ public class AutoJank extends Command {
     conveyor.set(.25);
   }
   public void intake(){
-    if(conveyor.isLimit() || NOTE){
+    if(limit.isLimit() || NOTE){
       intake.set(0);
       conveyor.set(0);
       NOTE = true;

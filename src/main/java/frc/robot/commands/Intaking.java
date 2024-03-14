@@ -4,12 +4,10 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Conveyor;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.LED;
+import frc.robot.subsystems.*;
 
 import static frc.robot.Constants.DriveConstants.*;
-import static frc.robot.Constants.LEDContstants.INTAKELIGHT;
+import static frc.robot.Constants.LEDContstants.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -19,12 +17,15 @@ public class Intaking extends Command {
   private final Intake intake;
   private final Conveyor conveyor;
   private final LED led;
+  private final Limit limit;
 
-  public Intaking(Intake intake, Conveyor conveyor, LED led) {
+  public Intaking(Intake intake, Conveyor conveyor, Limit limit, LED led) {
    this.intake = intake;
    this.conveyor = conveyor;
    this.led = led;
+   this.limit = limit;
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(limit);
     addRequirements(led);
     addRequirements(conveyor);
     addRequirements(intake);
@@ -42,7 +43,7 @@ public class Intaking extends Command {
   public void execute() {
 
     if(!SHOT){
-      if(conveyor.isLimit()){
+      if(limit.isLimit()){
         intake.set(0);
         conveyor.set(0);
       }else{
@@ -58,7 +59,7 @@ public class Intaking extends Command {
   public void end(boolean interrupted) {
     intake.set(0);
     conveyor.set(0);
-    if(conveyor.isLimit()){
+    if(limit.isLimit()){
       SHOT = true;
     }
     INTAKELIGHT = false;
@@ -68,6 +69,6 @@ public class Intaking extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return conveyor.isLimit();
+    return limit.isLimit();
   }
 }
