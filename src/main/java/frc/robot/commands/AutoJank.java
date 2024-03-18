@@ -5,8 +5,6 @@
 package frc.robot.commands;
 import frc.robot.subsystems.*;
 
-import static frc.robot.Constants.DriveConstants.SHOT;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 

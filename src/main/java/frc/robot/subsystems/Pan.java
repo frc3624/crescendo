@@ -11,7 +11,7 @@ import static frc.robot.Constants.PneumaticsConstants.*;
 
 public class Pan extends SubsystemBase {
   /** Creates a new Pan. */
-  private final Solenoid panSolenoid = new Solenoid(PneumaticsModuleType.REVPH, PAN);
+  private final Solenoid panSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, PAN);
 
   public Pan() {
     panSolenoid.set(false);

@@ -39,9 +39,9 @@ public final class Constants {
   }
   public static class PneumaticsConstants{
     public static int PCM = 20;
-    public static int GEARSHIFT = 8;
-    public static int CLIMB = 1;
-    public static int PAN = 15;
+    public static int GEARSHIFT = 7;
+    public static int CLIMB = 0;
+    public static int PAN = 6;
   }
   public static class LEDContstants{
     public static boolean CLIMBLIGHT = false;

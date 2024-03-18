@@ -8,8 +8,6 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-import static frc.robot.Constants.DriveConstants.SHOT;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
@@ -27,7 +25,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
  */
 public class RobotContainer {
   private final CommandXboxController xbox = new CommandXboxController(OperatorConstants.kDriverControllerPort);
-  private final Compressor compressor = new Compressor(PneumaticsModuleType.REVPH);
+  private final Compressor compressor = new Compressor(PneumaticsModuleType.CTREPCM);
   
   //Camera
 //  UsbCamera rearCam = CameraServer.startAutomaticCapture();
@@ -68,7 +66,6 @@ public class RobotContainer {
     compressor.enableDigital();
     drive.setDefaultCommand(driveTrain);
     configureBindings();
-    //System.out.println(drive.getAngle());
   }
 
   private void configureBindings() {

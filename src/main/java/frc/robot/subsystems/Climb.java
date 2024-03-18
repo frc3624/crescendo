@@ -17,7 +17,7 @@ public class Climb extends SubsystemBase {
   // private final TalonFX rightShoot = new TalonFX(DriveConstants.RIGHTSHOOT);
   // private final TalonFX rightIntake = new TalonFX(DriveConstants.RIGHTINTAKE);
   // private final TalonFX leftIntake = new TalonFX(DriveConstants.LEFTINTAKE);
-  private final Solenoid climbSolenoid = new Solenoid(PneumaticsModuleType.REVPH, CLIMB);
+  private final Solenoid climbSolenoid = new Solenoid(PneumaticsModuleType.CTREPCM, CLIMB);
   
   public Climb() {
     climbSolenoid.set(false);

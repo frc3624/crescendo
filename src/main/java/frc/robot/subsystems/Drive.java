@@ -17,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.DriveConstants.*;
 import static frc.robot.Constants.PneumaticsConstants.*;
-import static frc.robot.Constants.AutoConstants.*;
 
 
 
@@ -28,19 +27,8 @@ public class Drive extends SubsystemBase {
   private final CANSparkMax rightLead = new CANSparkMax(RIGHTLEAD, MotorType.kBrushless);
   private final CANSparkMax rightFollow = new CANSparkMax(RIGHTFOLLOW, MotorType.kBrushless);
   private final DifferentialDrive diffDrive = new DifferentialDrive(leftLead, rightLead);
-  private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.REVPH, GEARSHIFT);
- // private final AHRS gyro = new AHRS();
-  private double initialAng;
-  private double maxAng = 0;
-  // private final DifferentialDriveKinematics diffDriveKin = new DifferentialDriveKinematics(Units.inchesToMeters(TRACKWIDTH));
+  private final Solenoid gearShift = new Solenoid(PneumaticsModuleType.CTREPCM, GEARSHIFT);
 
-  // private final ChassisSpeeds chassisSpeeds = new ChassisSpeeds(VX, VY, ANGSPEED);
-
-  // private final DifferentialDriveWheelSpeeds wheelSpeeds = diffDriveKin.toWheelSpeeds(chassisSpeeds);
-
-  // private final double leftVelocity = wheelSpeeds.leftMetersPerSecond;
-
-  // private final double rightVelocity = wheelSpeeds.rightMetersPerSecond;
   public Drive() {
     leftFollow.follow(leftLead);
     rightFollow.follow(rightLead);
@@ -64,8 +52,6 @@ public class Drive extends SubsystemBase {
     leftFollow.burnFlash();
     rightLead.burnFlash();
     rightFollow.burnFlash();
-
-    // initialAng = gyro.getQuaternionZ();
     
   }
   public void arcadeDrive(double speed, double rotation){
@@ -75,16 +61,10 @@ public class Drive extends SubsystemBase {
 		else  
 			diffDrive.arcadeDrive(.85* speed,.4* rotation);
   }
-    // public void drive(double speed){
-    //   rightLead.set(speed);
-    // }
 
   public void shiftGear(){
     gearShift.set(!gearShift.get());
   }
-  // public double getAngle(){
-  //   return gyro.getQuaternionZ();
-  // }
 
   /**
    * Example command factory method.
